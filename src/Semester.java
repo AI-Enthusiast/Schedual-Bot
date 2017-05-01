@@ -6,10 +6,10 @@
  */
 public class Semester {
 
-    private CourseData couseLoad[];
+    private CourseData courseLoad[];
 
     public Semester(CourseData[] courses) {
-        this.couseLoad = courses;
+        this.courseLoad = courses;
     }
 
     /**
@@ -18,8 +18,8 @@ public class Semester {
      * @param course the course being added
      */
     public void addCourse(CourseData course) {
-        CourseData[] temp = new CourseData[getCouseLoad().length + 1]; // create a new temporary Course array
-        System.arraycopy(getCouseLoad(), 0, temp, 0, getCouseLoad().length - 1); //copies array over
+        CourseData[] temp = new CourseData[getCourseLoad().length + 1]; // create a new temporary Course array
+        System.arraycopy(getCourseLoad(), 0, temp, 0, getCourseLoad().length - 1); //copies array over
         temp[temp.length - 1] = course; // copies the desired course on the end
     }
 
@@ -30,19 +30,19 @@ public class Semester {
      */
     public void removeCourse(CourseData course) {
         /* the goal of the loop is to search through the course array and remove the desiered course */
-        for (int index = 0; index < getCouseLoad().length - 1; index++) {
-            /* if the courese is found */
-            if (getCouseLoad()[index].equals(course)) {
-                CourseData[] temp = new CourseData[getCouseLoad().length - 1]; // create a new temporary Course array
+        for (int index = 0; index < getCourseLoad().length - 1; index++) {
+            /* if the course is found */
+            if (getCourseLoad()[index].equals(course)) {
+                CourseData[] temp = new CourseData[getCourseLoad().length - 1]; // create a new temporary Course array
                 /* copy array up until course */
                 for (int outdex = 0; outdex < index; index++) {
-                    temp[outdex] = getCouseLoad()[outdex];
+                    temp[outdex] = getCourseLoad()[outdex];
                 }
                 /* copy array after course */
-                for (int outdex = index + 1; outdex < getCouseLoad().length - 1; outdex++) {
-                    temp[outdex] = getCouseLoad()[outdex];
+                for (int outdex = index + 1; outdex < getCourseLoad().length - 1; outdex++) {
+                    temp[outdex] = getCourseLoad()[outdex];
                 }
-                setCouseLoad(temp);
+                setCourseLoad(temp);
             }
         }
     }
@@ -53,9 +53,9 @@ public class Semester {
      * @return whether there is overlap or not
      */
     public boolean overlap() {
-        for (int index = 0; index < getCouseLoad().length - 2; index++) {
-            for (int outdex = index + 1; outdex < getCouseLoad().length - 1; index++) {
-                if (getCouseLoad()[outdex].overlap(getCouseLoad()[index])) {
+        for (int index = 0; index < getCourseLoad().length - 2; index++) {
+            for (int outdex = index + 1; outdex < getCourseLoad().length - 1; index++) {
+                if (getCourseLoad()[outdex].overlap(getCourseLoad()[index])) {
                     return true;
                 }
             }
@@ -65,12 +65,13 @@ public class Semester {
 
     /**
      * checks to see if a course will overlap with the semester
+     *
      * @param course course being tested
      * @return
      */
     public boolean overlap(CourseData course) {
-        for (int index = 0; index < getCouseLoad().length - 1; index++) {
-            if (getCouseLoad()[index].overlap(course)) {
+        for (int index = 0; index < getCourseLoad().length - 1; index++) {
+            if (getCourseLoad()[index].overlap(course)) {
                 return true;
             }
         }
@@ -84,9 +85,9 @@ public class Semester {
      * @return the overlapping courses
      */
     public CourseData findOverlap(int left) {
-        for (int index = left; index < getCouseLoad().length - 1; index++) {
-            if (getCouseLoad()[left].overlap(getCouseLoad()[index])) {
-                return getCouseLoad()[index];
+        for (int index = left; index < getCourseLoad().length - 1; index++) {
+            if (getCourseLoad()[left].overlap(getCourseLoad()[index])) {
+                return getCourseLoad()[index];
             }
             findOverlap(left + 1);
         }
@@ -100,18 +101,18 @@ public class Semester {
      */
     public int creditHours() {
         int credits = 0;
-        for (int index = 0; index < getCouseLoad().length - 1; index++) {
-            credits = credits + getCouseLoad()[index].getCredits();
+        for (int index = 0; index < getCourseLoad().length - 1; index++) {
+            credits = credits + getCourseLoad()[index].getCredits();
         }
         return credits;
     }
 
 
-    CourseData[] getCouseLoad() {
-        return couseLoad;
+    CourseData[] getCourseLoad() {
+        return courseLoad;
     }
 
-    public void setCouseLoad(CourseData[] couseLoad) {
-        this.couseLoad = couseLoad;
+    public void setCourseLoad(CourseData[] courseLoad) {
+        this.courseLoad = courseLoad;
     }
 }
