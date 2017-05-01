@@ -8,6 +8,7 @@ public class Plan {
      */
 
     public Plan(Semester[] taken){
-
     }
+
+
 }
