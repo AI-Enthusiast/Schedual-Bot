@@ -5,7 +5,9 @@
  */
 public class Plan {
     /* Things this class should contain:
-     *
-     *
      */
+
+    public Plan(Semester[] taken){
+
+    }
 }
